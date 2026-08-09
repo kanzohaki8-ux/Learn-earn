@@ -1,540 +1,1525 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learn & Earn - Student Special</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        body {
-            background-color: #f4f7fe;
-            color: #333;
-            padding-bottom: 60px;
-        }
+<title>Learn & Earn | Student Skill Platform</title>
 
-        /* Banner */
-        .banner {
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            color: white;
-            text-align: center;
-            padding: 35px 20px;
-        }
+<meta name="description" content="Students ke liye practical digital skills learning platform.">
 
-        .banner h1 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
+<style>
 
-        .banner p {
-            font-size: 1rem;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.5;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Segoe UI,sans-serif;
+}
 
-        .container {
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 0 15px;
-        }
+html{
+    scroll-behavior:smooth;
+}
 
-        /* Live Counter Box */
-        .live-counter-box {
-            background: #ffffff;
-            border: 2px solid #2575fc;
-            border-radius: 10px;
-            padding: 15px;
-            text-align: center;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 10px rgba(37, 117, 252, 0.1);
-        }
+body{
+    background:#f7f9fc;
+    color:#172033;
+    line-height:1.6;
+}
 
-        .counter-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #2575fc;
-        }
+a{
+    text-decoration:none;
+    color:inherit;
+}
 
-        .live-badge {
-            display: inline-block;
-            background: #e74c3c;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: bold;
-            margin-left: 5px;
-            animation: blink 1.5s infinite;
-        }
+.container{
+    width:min(1100px,92%);
+    margin:auto;
+}
 
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0.4; }
-            100% { opacity: 1; }
-        }
+/* NAVBAR */
 
-        /* Trust Badges */
-        .trust-badges {
-            display: flex;
-            justify-content: space-around;
-            background: white;
-            padding: 12px;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            text-align: center;
-            font-weight: bold;
-            font-size: 0.85rem;
-            color: #27ae60;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
+.navbar{
+    background:#fff;
+    border-bottom:1px solid #e8edf5;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
 
-        .section-title {
-            text-align: center;
-            margin: 25px 0 15px;
-            font-size: 1.4rem;
-            color: #2c3e50;
-        }
+.nav-inner{
+    min-height:68px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
 
-        /* Course Cards */
-        .courses-grid {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+.logo{
+    font-size:1.4rem;
+    font-weight:800;
+    color:#2563eb;
+}
 
-        .course-card {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            width: 260px;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            border: 2px solid #eef2f5;
-            position: relative;
-        }
+.logo span{
+    color:#111827;
+}
 
-        .popular-badge {
-            position: absolute;
-            top: -12px;
-            right: 20px;
-            background: #f1c40f;
-            color: #000;
-            font-size: 0.75rem;
-            font-weight: bold;
-            padding: 4px 10px;
-            border-radius: 10px;
-        }
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:22px;
+}
 
-        .price {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #2575fc;
-            margin: 10px 0;
-        }
+.nav-links a{
+    color:#4b5563;
+    font-size:.94rem;
+    font-weight:600;
+}
 
-        .features {
-            list-style: none;
-            margin-bottom: 15px;
-            font-size: 0.9rem;
-            color: #666;
-            text-align: left;
-        }
+.nav-btn{
+    background:#2563eb;
+    color:#fff!important;
+    padding:9px 16px;
+    border-radius:8px;
+}
 
-        .features li { margin-bottom: 6px; }
+/* HERO */
 
-        .select-btn {
-            background-color: #2575fc;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-        }
+.hero{
+    background:linear-gradient(135deg,#eef4ff,#fff);
+    padding:75px 0;
+}
 
-        /* Refer and Earn Section */
-        .refer-box {
-            background: linear-gradient(135deg, #11998e, #38ef7d);
-            color: white;
-            border-radius: 12px;
-            padding: 25px;
-            margin-top: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:45px;
+    align-items:center;
+}
 
-        .refer-box h2 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            text-align: center;
-        }
+.badge{
+    display:inline-block;
+    background:#e7efff;
+    color:#2563eb;
+    padding:7px 13px;
+    border-radius:30px;
+    font-size:.85rem;
+    font-weight:700;
+    margin-bottom:18px;
+}
 
-        .refer-box p {
-            text-align: center;
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-        }
+.hero h1{
+    font-size:clamp(2.3rem,5vw,4rem);
+    line-height:1.1;
+    margin-bottom:18px;
+}
 
-        .refer-form {
-            background: rgba(255, 255, 255, 0.15);
-            padding: 15px;
-            border-radius: 8px;
-            backdrop-filter: blur(5px);
-        }
+.hero h1 span{
+    color:#2563eb;
+}
 
-        .form-group {
-            margin-bottom: 12px;
-        }
+.hero p{
+    color:#5f6878;
+    font-size:1.05rem;
+    max-width:650px;
+    margin-bottom:25px;
+}
 
-        .form-group label {
-            display: block;
-            font-size: 0.85rem;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
+.hero-buttons{
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
 
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border-radius: 6px;
-            border: none;
-            font-size: 0.95rem;
-        }
+.primary-btn,
+.secondary-btn{
+    padding:13px 20px;
+    border-radius:9px;
+    font-weight:700;
+    display:inline-block;
+}
 
-        .refer-submit-btn {
-            background: #ffffff;
-            color: #11998e;
-            border: none;
-            width: 100%;
-            padding: 12px;
-            border-radius: 6px;
-            font-weight: bold;
-            font-size: 1rem;
-            cursor: pointer;
-            margin-top: 5px;
-        }
+.primary-btn{
+    background:#2563eb;
+    color:#fff;
+}
 
-        /* Payment Proof Showcase Section */
-        .payout-gallery {
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            padding: 10px 0;
-            margin-bottom: 20px;
-        }
+.secondary-btn{
+    background:#fff;
+    border:1px solid #d8e1ef;
+    color:#2563eb;
+}
 
-        .payout-card {
-            min-width: 160px;
-            background: white;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px dashed #27ae60;
-            text-align: center;
-            font-size: 0.8rem;
-        }
+.hero-card{
+    background:#fff;
+    padding:28px;
+    border-radius:18px;
+    box-shadow:0 15px 40px rgba(30,60,120,.12);
+}
 
-        .payout-card span {
-            color: #27ae60;
-            font-weight: bold;
-            font-size: 1.1rem;
-            display: block;
-            margin-top: 4px;
-        }
+.hero-card h3{
+    margin-bottom:15px;
+}
 
-        /* Comments Section */
-        .review-box {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            border-left: 5px solid #2575fc;
-            min-height: 110px;
-        }
+.mini-item{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    padding:13px 0;
+    border-bottom:1px solid #edf0f5;
+}
 
-        .review-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
+.mini-item:last-child{
+    border-bottom:0;
+}
 
-        .review-name { font-weight: bold; color: #2c3e50; }
-        .stars { color: #f1c40f; }
-        .review-text { font-size: 0.95rem; color: #555; line-height: 1.4; }
+.icon{
+    width:40px;
+    height:40px;
+    display:grid;
+    place-items:center;
+    background:#edf4ff;
+    border-radius:10px;
+}
 
-        /* Payment Section */
-        .payment-section {
-            display: none;
-            background: white;
-            margin-top: 30px;
-            padding: 25px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
+/* SECTIONS */
 
-        .qr-box img {
-            width: 200px;
-            height: 200px;
-            border: 1px solid #ddd;
-            padding: 5px;
-            border-radius: 8px;
-            margin: 15px 0;
-            object-fit: contain;
-        }
+section{
+    padding:65px 0;
+}
 
-        .upi-id {
-            background: #eef2f5;
-            padding: 10px 18px;
-            font-weight: bold;
-            border-radius: 6px;
-            display: inline-block;
-            margin-bottom: 15px;
-            color: #2575fc;
-            font-size: 1.1rem;
-            border: 1px dashed #2575fc;
-        }
+.section-heading{
+    text-align:center;
+    margin-bottom:35px;
+}
 
-        .confirm-btn {
-            background-color: #27ae60;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 6px;
-            font-size: 1rem;
-            cursor: pointer;
-            width: 100%;
-        }
+.section-heading h2{
+    font-size:2rem;
+    margin-bottom:8px;
+}
 
-        /* Support Buttons */
-        .support-section {
-            margin-top: 35px;
-            text-align: center;
-        }
+.section-heading p{
+    color:#697386;
+}
 
-        .support-btns {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 15px;
-        }
+/* FEATURES */
 
-        .support-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 20px;
-            border-radius: 8px;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.95rem;
-        }
+.features{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
 
-        .telegram-btn { background-color: #0088cc; }
-        .whatsapp-btn { background-color: #25D366; }
+.feature{
+    background:#fff;
+    padding:25px;
+    border-radius:14px;
+    border:1px solid #e8edf4;
+}
 
-    </style>
+.feature-icon{
+    font-size:1.8rem;
+    margin-bottom:10px;
+}
+
+.feature h3{
+    margin-bottom:7px;
+}
+
+.feature p{
+    color:#687386;
+    font-size:.94rem;
+}
+
+/* HOW */
+
+.steps{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.step{
+    text-align:center;
+    padding:25px;
+}
+
+.step-number{
+    width:48px;
+    height:48px;
+    margin:0 auto 15px;
+    border-radius:50%;
+    background:#2563eb;
+    color:white;
+    display:grid;
+    place-items:center;
+    font-weight:800;
+}
+
+.step p{
+    color:#697386;
+}
+
+/* PLANS */
+
+.course-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.course{
+    background:#fff;
+    border:1px solid #e5eaf2;
+    border-radius:15px;
+    padding:25px;
+    position:relative;
+}
+
+.course.popular{
+    border:2px solid #2563eb;
+}
+
+.popular-label{
+    position:absolute;
+    top:-13px;
+    right:18px;
+    background:#2563eb;
+    color:#fff;
+    padding:4px 11px;
+    border-radius:20px;
+    font-size:.72rem;
+    font-weight:700;
+}
+
+.course-desc{
+    color:#6b7280;
+    font-size:.9rem;
+    min-height:55px;
+}
+
+.price{
+    font-size:2rem;
+    font-weight:800;
+    color:#2563eb;
+    margin:15px 0;
+}
+
+.course ul{
+    list-style:none;
+    margin-bottom:20px;
+}
+
+.course li{
+    margin:8px 0;
+    color:#4b5563;
+    font-size:.9rem;
+}
+
+.course-btn{
+    display:block;
+    width:100%;
+    text-align:center;
+    background:#2563eb;
+    color:#fff;
+    border:0;
+    padding:11px;
+    border-radius:8px;
+    font-weight:700;
+    cursor:pointer;
+    font-size:.95rem;
+}
+
+.note{
+    margin-top:20px;
+    background:#fff8e6;
+    border:1px solid #f2d78d;
+    padding:15px;
+    border-radius:10px;
+    color:#735700;
+    font-size:.9rem;
+}
+
+/* CHECKOUT */
+
+.checkout-section{
+    display:none;
+    background:#eef4ff;
+}
+
+.checkout-box{
+    width:min(600px,92%);
+    margin:auto;
+    background:#fff;
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 15px 40px rgba(0,0,0,.08);
+}
+
+.checkout-box h2{
+    text-align:center;
+    margin-bottom:7px;
+}
+
+.checkout-subtitle{
+    text-align:center;
+    color:#697386;
+    margin-bottom:25px;
+}
+
+.selected-plan{
+    background:#f1f5ff;
+    border:1px solid #dbe5ff;
+    padding:18px;
+    border-radius:12px;
+    margin-bottom:22px;
+}
+
+.selected-plan span{
+    display:block;
+    color:#6b7280;
+    font-size:.84rem;
+}
+
+.selected-plan strong{
+    font-size:1.2rem;
+}
+
+.selected-plan b{
+    float:right;
+    color:#2563eb;
+    font-size:1.3rem;
+}
+
+.checkout-box label{
+    display:block;
+    font-weight:700;
+    margin:13px 0 6px;
+}
+
+.checkout-box input[type="text"],
+.checkout-box input[type="tel"]{
+    width:100%;
+    padding:12px;
+    border:1px solid #d9dee8;
+    border-radius:8px;
+    font-size:1rem;
+    outline:none;
+}
+
+.checkout-box input:focus{
+    border-color:#2563eb;
+}
+
+.payment-box{
+    background:#f7fafc;
+    border:1px dashed #2563eb;
+    padding:20px;
+    margin:22px 0;
+    border-radius:12px;
+    text-align:center;
+}
+
+.payment-box h3{
+    color:#2563eb;
+    margin-bottom:10px;
+}
+
+.upi-display{
+    display:inline-block;
+    background:#fff;
+    border:1px solid #dbe2ec;
+    padding:11px 16px;
+    border-radius:8px;
+    font-weight:700;
+    color:#2563eb;
+    margin:8px 0;
+}
+
+.copy-btn{
+    display:block;
+    margin:8px auto;
+    border:0;
+    background:#e8f0ff;
+    color:#2563eb;
+    padding:9px 14px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:700;
+}
+
+.payment-note{
+    color:#6b7280;
+    font-size:.84rem;
+    margin-top:12px;
+}
+
+.terms{
+    display:flex!important;
+    align-items:flex-start;
+    gap:8px;
+    font-weight:400!important;
+}
+
+.submit-payment{
+    width:100%;
+    border:0;
+    background:#2563eb;
+    color:#fff;
+    padding:13px;
+    border-radius:8px;
+    font-size:1rem;
+    font-weight:700;
+    cursor:pointer;
+    margin-top:15px;
+}
+
+.success-message{
+    display:none;
+    background:#ecfdf5;
+    border:1px solid #a7f3d0;
+    color:#065f46;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+    margin-top:20px;
+}
+
+.whatsapp-confirm{
+    display:inline-block;
+    background:#25d366;
+    color:#fff;
+    padding:11px 18px;
+    border-radius:8px;
+    font-weight:700;
+    margin-top:15px;
+}
+
+/* FAQ */
+
+.faq{
+    max-width:800px;
+    margin:auto;
+}
+
+details{
+    background:#fff;
+    border:1px solid #e5e9f0;
+    border-radius:10px;
+    padding:17px;
+    margin-bottom:10px;
+}
+
+summary{
+    cursor:pointer;
+    font-weight:700;
+}
+
+details p{
+    color:#697386;
+    margin-top:10px;
+}
+
+/* CTA */
+
+.cta{
+    background:linear-gradient(135deg,#2563eb,#4f46e5);
+    color:#fff;
+    border-radius:20px;
+    padding:45px 25px;
+    text-align:center;
+}
+
+.cta h2{
+    font-size:2rem;
+    margin-bottom:10px;
+}
+
+.cta p{
+    opacity:.9;
+    margin-bottom:22px;
+}
+
+.cta .primary-btn{
+    background:#fff;
+    color:#2563eb;
+}
+
+/* FOOTER */
+
+footer{
+    background:#111827;
+    color:#d1d5db;
+    padding:35px 0;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr;
+    gap:30px;
+}
+
+footer h3{
+    color:#fff;
+    margin-bottom:10px;
+}
+
+footer p,
+footer a{
+    font-size:.9rem;
+    color:#9ca3af;
+}
+
+.footer-links{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.copyright{
+    border-top:1px solid #293241;
+    margin-top:25px;
+    padding-top:18px;
+    text-align:center;
+    font-size:.8rem;
+    color:#9ca3af;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero{
+        padding:50px 0;
+    }
+
+    .hero-grid{
+        grid-template-columns:1fr;
+    }
+
+    .features,
+    .steps,
+    .course-grid{
+        grid-template-columns:1fr;
+    }
+
+    section{
+        padding:50px 0;
+    }
+
+    .hero h1{
+        font-size:2.4rem;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+</style>
 </head>
+
 <body>
 
-    <!-- Header Banner -->
-    <div class="banner">
-        <h1>Hello Students! Aapka Swagat Hai! 🚀</h1>
-        <p>Pocket money ke liye ghar par depend kyu? Ek skill sikho aur khud kamao. 💰📱<br>
-        12th ke saath earning start karo — शुरुआत छोटी होगी, लेकिन experience aur confidence bahut bada milega. 🔥</p>
-    </div>
+<!-- NAVBAR -->
 
-    <div class="container">
-        
-        <!-- Live Counter -->
-        <div class="live-counter-box">
-            <span>Total Active Members Joined <span class="live-badge">LIVE</span></span>
-            <div class="counter-number" id="memberCounter">10,340</div>
-        </div>
+<nav class="navbar">
 
-        <!-- Enhanced Trust Badges -->
-        <div class="trust-badges">
-            <div>✅ 100% Verified Skill</div>
-            <div>🔒 Instant UPI Transfer</div>
-            <div>⚡ 24/7 Support</div>
-            <div>🤝 Direct Referral Reward</div>
-        </div>
+<div class="container nav-inner">
 
-        <h2 class="section-title">Apna Earning Plan Chuno</h2>
+<a href="#" class="logo">
+Learn<span>&</span>Earn
+</a>
 
-        <!-- Courses -->
-        <div class="courses-grid">
-            <div class="course-card">
-                <h3>Starter Skill</h3>
-                <div class="price">₹49</div>
-                <ul class="features">
-                    <li>✔ Basic Earning Guide</li>
-                    <li>✔ Daily 1 Hour Work</li>
-                    <li>✔ Beginner Friendly</li>
-                </ul>
-                <button class="select-btn" onclick="showPayment('Starter Skill', 49)">Select Plan</button>
-            </div>
+<div class="nav-links">
 
-            <div class="course-card">
-                <h3>Pro Skill</h3>
-                <div class="price">₹99</div>
-                <ul class="features">
-                    <li>✔ Freelancing Guide</li>
-                    <li>✔ Social Media Earning</li>
-                    <li>✔ High Paying Tools</li>
-                </ul>
-                <button class="select-btn" onclick="showPayment('Pro Skill', 99)">Select Plan</button>
-            </div>
+<a href="#skills">Skills</a>
+<a href="#plans">Plans</a>
+<a href="#how">How It Works</a>
+<a href="#faq">FAQ</a>
+<a href="#contact" class="nav-btn">Contact</a>
 
-            <div class="course-card">
-                <span class="popular-badge">BEST VALUE</span>
-                <h3>Master Skill</h3>
-                <div class="price">₹199</div>
-                <ul class="features">
-                    <li>✔ Full Step-by-Step Course</li>
-                    <li>✔ Client Finding Strategy</li>
-                    <li>✔ Personal Guidance</li>
-                    <li>✔ 🌟 Eligible for ₹99 Referral Bonus</li>
-                </ul>
-                <button class="select-btn" onclick="showPayment('Master Skill', 199)">Select Plan</button>
-            </div>
-        </div>
+</div>
 
-        <!-- Refer and Earn Section -->
-        <div class="refer-box">
-            <h2>💸 Refer Karo & ₹99 Kamao Direct UPI Me!</h2>
-            <p>Aapke dost ne jab bhi <b>₹199 ka Master Skill Plan</b> buy kiya, aapko milenge ₹99 direct aapke Bank Account/UPI me!</p>
+</div>
 
-            <div class="refer-form">
-                <div class="form-group">
-                    <label>Aapka WhatsApp Number:</label>
-                    <input type="text" id="refPhone" placeholder="10 Digit Phone Number">
-                </div>
-                <div class="form-group">
-                    <label>Aapki UPI ID (Jahan ₹99 chahiye):</label>
-                    <input type="text" id="refUpi" placeholder="example@upi ya GooglePay/PhonePe ID">
-                </div>
-                <div class="form-group">
-                    <label>Dost Ka Name & Phone (Jisne ₹199 plan buy kiya):</label>
-                    <input type="text" id="friendDetail" placeholder="Dost Ka Naama Aur Number">
-                </div>
-                <button class="refer-submit-btn" onclick="submitReferral()">Claim ₹99 Reward Now 🚀</button>
-            </div>
-        </div>
+</nav>
 
-        <!-- Recent Payout Live Ticker -->
-        <h2 class="section-title">Recent Student Referral Payouts 💸</h2>
-        <div class="payout-gallery">
-            <div class="payout-card">Amit K. (Delhi) <span>₹99 Sent Via UPI</span></div>
-            <div class="payout-card">Rohan S. (UP) <span>₹99 Sent Via UPI</span></div>
-            <div class="payout-card">Pooja M. (MP) <span>₹99 Sent Via UPI</span></div>
-            <div class="payout-card">Karan P. (Bihar) <span>₹99 Sent Via UPI</span></div>
-        </div>
 
-        <!-- Auto Changing Live Comments -->
-        <h2 class="section-title">Students Feedback 💬</h2>
-        <div class="review-box" id="reviewBox">
-            <div class="review-header">
-                <span class="review-name" id="reviewName">Rahul Sharma</span>
-                <span class="stars">⭐⭐⭐⭐⭐</span>
-            </div>
-            <p class="review-text" id="reviewText">"₹99 wala plan liya tha, 1 week me pehli earning ho gayi. Very easy system!"</p>
-        </div>
+<!-- HERO -->
 
-        <!-- Payment Section (QR and UPI ID Updated) -->
-        <div class="payment-section" id="paymentSection">
-            <h2 id="selectedPlanTitle">Payment Karein</h2>
-            <p>Course access paane ke liye pehle payment complete karein.</p>
-            
-            <div class="qr-box">
-                <!-- QR Image Placeholder: Apne QR Code Image ka naam 'qr.png' karke folder me rakhein -->
-                <img src="qr.png" alt="PhonePe QR Code" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=deepakboy70@axl'">
-            </div>
+<header class="hero">
 
-            <p>Ya niche diye gaye UPI ID par pay karein:</p>
-            <div class="upi-id">deepakboy70@axl</div>
+<div class="container hero-grid">
 
-            <div>
-                <button class="confirm-btn" onclick="alert('Payment screenshot Telegram ya WhatsApp support par bheinze access paane ke liye!')">Payment Kar Diya (Send Screenshot)</button>
-            </div>
-        </div>
+<div>
 
-        <!-- Support Section -->
-        <div class="support-section">
-            <h2 class="section-title">Koi Sawaal Ya Help Chahiye?</h2>
-            <p>Aap humse direct baat kar sakte hain:</p>
-            <div class="support-btns">
-                <a href="https://t.me/your_telegram_id" target="_blank" class="support-btn telegram-btn">
-                    ✈️ Telegram Support
-                </a>
-                <a href="https://wa.me/910000000000" target="_blank" class="support-btn whatsapp-btn">
-                    💬 WhatsApp Help
-                </a>
-            </div>
-        </div>
+<div class="badge">
+🎓 Student Skill Platform
+</div>
 
-    </div>
+<h1>
+Skill Sikho.<br>
+<span>Experience Banao.</span>
+</h1>
 
-    <script>
-        // 1. Live Member Counter
-        let count = 10340;
-        function updateCounter() {
-            count += Math.floor(Math.random() * 3) + 1;
-            document.getElementById('memberCounter').innerText = count.toLocaleString('en-IN');
-        }
-        setInterval(updateCounter, 4000);
+<p>
+12th aur college students ke liye practical digital skills
+ko simple steps mein seekhne ka platform.
+Pehle skill samjho, practice karo aur apna experience build karo.
+</p>
 
-        // 2. Dynamic Auto-Changing Comments
-        const reviews = [
-            { name: "Rahul Sharma (Class 12th)", text: "₹99 wala plan liya tha, 1 week me pehli earning ho gayi. Very easy system!" },
-            { name: "Priya Verma (College Student)", text: "Dost ko ₹199 wala course refer kiya tha, mujhe sham ko hi ₹99 UPI par mil gaye!" },
-            { name: "Aman Gupta (12th Student)", text: "Starter plan ₹49 se start kiya tha. Daily 1 hr kaam karke achha confidence mila." },
-            { name: "Neha Singh (Student)", text: "Master Skill Plan ₹199 best hai. Isme full step-by-step guidance mila." },
-            { name: "Vikas Kumar (12th Student)", text: "Support team ne payment ke 5 min baad hi saara material bhej diya." }
-        ];
+<div class="hero-buttons">
 
-        let reviewIndex = 0;
-        function rotateReviews() {
-            reviewIndex = (reviewIndex + 1) % reviews.length;
-            document.getElementById('reviewName').innerText = reviews[reviewIndex].name;
-            document.getElementById('reviewText').innerText = `"${reviews[reviewIndex].text}"`;
-        }
-        setInterval(rotateReviews, 5000);
+<a href="#plans" class="primary-btn">
+🚀 Plans Dekho
+</a>
 
-        // 3. Payment Section Toggle
-        function showPayment(planName, price) {
-            document.getElementById('paymentSection').style.display = 'block';
-            document.getElementById('selectedPlanTitle').innerText = 'Payment for ' + planName + ' (₹' + price + ')';
-            window.scrollTo({
-                top: document.getElementById('paymentSection').offsetTop - 20,
-                behavior: 'smooth'
-            });
-        }
+<a href="#how" class="secondary-btn">
+Kaise Kaam Karta Hai?
+</a>
 
-        // 4. Refer Claim Handler
-        function submitReferral() {
-            const phone = document.getElementById('refPhone').value;
-            const upi = document.getElementById('refUpi').value;
-            const friend = document.getElementById('friendDetail').value;
+</div>
 
-            if(!phone || !upi || !friend) {
-                alert('Kripya saari details sahi se bharein!');
-                return;
-            }
+</div>
 
-            alert('Referral Claim Request Received! Dost ke payment verification ke baad ₹99 aapki UPI ID (' + upi + ') par credit kar diye jayenge.');
-        }
-    </script>
+
+<div class="hero-card">
+
+<h3>Student Journey 🎯</h3>
+
+<div class="mini-item">
+
+<div class="icon">📚</div>
+
+<div>
+<strong>Learn</strong>
+<p>Basic digital skills samjho</p>
+</div>
+
+</div>
+
+<div class="mini-item">
+
+<div class="icon">🛠️</div>
+
+<div>
+<strong>Practice</strong>
+<p>Real examples par practice karo</p>
+</div>
+
+</div>
+
+<div class="mini-item">
+
+<div class="icon">💼</div>
+
+<div>
+<strong>Build</strong>
+<p>Portfolio aur experience banao</p>
+</div>
+
+</div>
+
+<div class="mini-item">
+
+<div class="icon">🚀</div>
+
+<div>
+<strong>Grow</strong>
+<p>Aage opportunities explore karo</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</header>
+
+
+<!-- SKILLS -->
+
+<section id="skills">
+
+<div class="container">
+
+<div class="section-heading">
+
+<h2>Students Ko Kya Milega?</h2>
+
+<p>
+Practical skills aur learning par focus.
+</p>
+
+</div>
+
+
+<div class="features">
+
+<div class="feature">
+
+<div class="feature-icon">📱</div>
+
+<h3>Digital Skills</h3>
+
+<p>
+Social media, content aur basic online tools
+ko practical examples ke saath samjho.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">💻</div>
+
+<h3>Freelancing Basics</h3>
+
+<p>
+Freelancing kya hai, clients ko kaise approach
+karna hai aur portfolio kaise banana hai.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">🎯</div>
+
+<h3>Practical Guidance</h3>
+
+<p>
+Step-by-step learning material aur beginner-friendly
+guidance.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- HOW IT WORKS -->
+
+<section id="how">
+
+<div class="container">
+
+<div class="section-heading">
+
+<h2>Kaise Kaam Karta Hai?</h2>
+
+<p>
+Simple 3-step learning process.
+</p>
+
+</div>
+
+
+<div class="steps">
+
+<div class="step">
+
+<div class="step-number">1</div>
+
+<h3>Plan Choose Karo</h3>
+
+<p>
+Apni requirement ke according learning plan select karo.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-number">2</div>
+
+<h3>Skill Seekho</h3>
+
+<p>
+Course material ko step-by-step follow karo aur practice karo.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<div class="step-number">3</div>
+
+<h3>Practice & Grow</h3>
+
+<p>
+Skills ka use karke projects aur portfolio build karo.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PLANS -->
+
+<section id="plans">
+
+<div class="container">
+
+<div class="section-heading">
+
+<h2>Learning Plans</h2>
+
+<p>
+Apne level ke according plan choose karo.
+</p>
+
+</div>
+
+
+<div class="course-grid">
+
+
+<!-- STARTER -->
+
+<div class="course">
+
+<h3>Starter Skill</h3>
+
+<p class="course-desc">
+Beginners ke liye basic digital skill introduction.
+</p>
+
+<div class="price">₹49</div>
+
+<ul>
+
+<li>✓ Beginner Guide</li>
+<li>✓ Basic Skill Lessons</li>
+<li>✓ Practice Tasks</li>
+<li>✓ Beginner Support</li>
+
+</ul>
+
+<button
+class="course-btn"
+onclick="openCheckout('Starter Skill',49)">
+Buy Now ₹49
+</button>
+
+</div>
+
+
+<!-- PRO -->
+
+<div class="course">
+
+<h3>Pro Skill</h3>
+
+<p class="course-desc">
+Digital tools aur freelancing basics ko deeper level par samajhne ke liye.
+</p>
+
+<div class="price">₹99</div>
+
+<ul>
+
+<li>✓ Freelancing Basics</li>
+<li>✓ Social Media Skills</li>
+<li>✓ Tool Guide</li>
+<li>✓ Practice Projects</li>
+
+</ul>
+
+<button
+class="course-btn"
+onclick="openCheckout('Pro Skill',99)">
+Buy Now ₹99
+</button>
+
+</div>
+
+
+<!-- MASTER -->
+
+<div class="course popular">
+
+<div class="popular-label">
+POPULAR
+</div>
+
+<h3>Master Skill</h3>
+
+<p class="course-desc">
+Complete beginner-to-practical learning path.
+</p>
+
+<div class="price">₹199</div>
+
+<ul>
+
+<li>✓ Complete Skill Guide</li>
+<li>✓ Client Finding Basics</li>
+<li>✓ Portfolio Guidance</li>
+<li>✓ Practice Projects</li>
+<li>✓ Personal Guidance</li>
+
+</ul>
+
+<button
+class="course-btn"
+onclick="openCheckout('Master Skill',199)">
+Buy Now ₹199
+</button>
+
+</div>
+
+</div>
+
+
+<div class="note">
+
+⚠️ <strong>Important:</strong>
+Course purchase earning ki guarantee nahi deta.
+Earning skills, effort, market demand aur individual performance
+par depend karti hai.
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CHECKOUT -->
+
+<section id="checkout" class="checkout-section">
+
+<div class="checkout-box">
+
+<h2>🛒 Complete Your Purchase</h2>
+
+<p class="checkout-subtitle">
+Selected plan ke liye payment details submit karein.
+</p>
+
+
+<div class="selected-plan">
+
+<span>Selected Plan</span>
+
+<strong id="checkoutPlan">
+Starter Skill
+</strong>
+
+<b id="checkoutPrice">
+₹49
+</b>
+
+</div>
+
+
+<form id="checkoutForm">
+
+
+<label>
+Student Name
+</label>
+
+<input
+type="text"
+id="studentName"
+placeholder="Apna naam"
+required
+>
+
+
+<label>
+WhatsApp Number
+</label>
+
+<input
+type="tel"
+id="studentPhone"
+placeholder="10 digit mobile number"
+maxlength="10"
+required
+>
+
+
+<label>
+Payment Reference / UTR
+</label>
+
+<input
+type="text"
+id="transactionId"
+placeholder="Payment ke baad UTR/Reference ID"
+required
+>
+
+
+<div class="payment-box">
+
+<h3>
+💳 Pay ₹<span id="payAmount">49</span>
+</h3>
+
+<p>
+UPI ID:
+</p>
+
+<div class="upi-display">
+deepakboy70@axl
+</div>
+
+<button
+type="button"
+class="copy-btn"
+onclick="copyUPI()">
+📋 Copy UPI ID
+</button>
+
+<p class="payment-note">
+UPI app me payment complete karein.
+Uske baad UTR/Reference ID enter karein.
+</p>
+
+</div>
+
+
+<label class="terms">
+
+<input
+type="checkbox"
+id="termsCheck"
+required
+>
+
+<span>
+Maine payment details sahi hone ki confirmation di hai.
+</span>
+
+</label>
+
+
+<button
+type="submit"
+class="submit-payment">
+✅ Submit Payment Details
+</button>
+
+</form>
+
+
+<div
+id="paymentSuccess"
+class="success-message">
+
+<h3>
+🎉 Request Submitted!
+</h3>
+
+<p>
+Aapki payment details receive ho gayi hain.
+Payment verification ke baad course access diya jayega.
+</p>
+
+<a
+id="whatsappConfirm"
+target="_blank"
+class="whatsapp-confirm">
+💬 WhatsApp par Confirmation Bhejein
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FAQ -->
+
+<section id="faq">
+
+<div class="container">
+
+<div class="section-heading">
+
+<h2>
+Frequently Asked Questions
+</h2>
+
+<p>
+Students ke common questions.
+</p>
+
+</div>
+
+
+<div class="faq">
+
+
+<details>
+
+<summary>
+Kya beginner bhi join kar sakta hai?
+</summary>
+
+<p>
+Haan. Starter plan beginners ko dhyan mein rakhkar design kiya gaya hai.
+</p>
+
+</details>
+
+
+<details>
+
+<summary>
+Kya earning guaranteed hai?
+</summary>
+
+<p>
+Nahi. Koi fixed earning guarantee nahi hai.
+Platform ka purpose skills aur practical knowledge provide karna hai.
+</p>
+
+</details>
+
+
+<details>
+
+<summary>
+Payment kaise karna hai?
+</summary>
+
+<p>
+Plan select karne ke baad checkout section mein di gayi UPI ID par
+payment karein aur UTR/reference number submit karein.
+</p>
+
+</details>
+
+
+<details>
+
+<summary>
+Payment ke baad course kab milega?
+</summary>
+
+<p>
+Payment verification ke baad course access provide kiya jayega.
+</p>
+
+</details>
+
+
+<details>
+
+<summary>
+Kya refund milega?
+</summary>
+
+<p>
+Refund terms purchase se pehle clearly provide ki jayengi.
+</p>
+
+</details>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section id="contact">
+
+<div class="container">
+
+<div class="cta">
+
+<h2>
+Ready To Learn? 🚀
+</h2>
+
+<p>
+Ek skill choose karo aur apni learning journey start karo.
+</p>
+
+<a
+href="#plans"
+class="primary-btn">
+View Plans
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="container">
+
+<div class="footer-grid">
+
+
+<div>
+
+<h3>
+Learn & Earn
+</h3>
+
+<p>
+Students ke liye practical digital skills
+learning platform.
+</p>
+
+</div>
+
+
+<div>
+
+<h3>
+Quick Links
+</h3>
+
+<div class="footer-links">
+
+<a href="#skills">
+Skills
+</a>
+
+<a href="#plans">
+Plans
+</a>
+
+<a href="#how">
+How It Works
+</a>
+
+<a href="#faq">
+FAQ
+</a>
+
+</div>
+
+</div>
+
+
+<div>
+
+<h3>
+Support
+</h3>
+
+<div class="footer-links">
+
+<a href="#contact">
+Contact
+</a>
+
+<a href="#plans">
+Purchase
+</a>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="copyright">
+
+© 2026 Learn & Earn. All rights reserved.
+
+</div>
+
+</div>
+
+</footer>
+
+
+<script>
+
+let selectedPlan = "";
+let selectedPrice = "";
+
+
+/* OPEN CHECKOUT */
+
+function openCheckout(plan, price){
+
+    selectedPlan = plan;
+    selectedPrice = price;
+
+    document.getElementById("checkoutPlan").innerText = plan;
+
+    document.getElementById("checkoutPrice").innerText =
+        "₹" + price;
+
+    document.getElementById("payAmount").innerText =
+        price;
+
+    document.getElementById("checkout").style.display =
+        "block";
+
+    document.getElementById("checkout").scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+/* COPY UPI */
+
+function copyUPI(){
+
+    navigator.clipboard.writeText("deepakboy70@axl")
+    .then(function(){
+
+        alert("UPI ID copied!");
+
+    })
+    .catch(function(){
+
+        alert("UPI ID: deepakboy70@axl");
+
+    });
+
+}
+
+
+/* FORM SUBMIT */
+
+document
+.getElementById("checkoutForm")
+.addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+
+    const name =
+        document
+        .getElementById("studentName")
+        .value
+        .trim();
+
+
+    const phone =
+        document
+        .getElementById("studentPhone")
+        .value
+        .trim();
+
+
+    const transaction =
+        document
+        .getElementById("transactionId")
+        .value
+        .trim();
+
+
+    if(!/^[0-9]{10}$/.test(phone)){
+
+        alert(
+            "Please enter a valid 10 digit WhatsApp number."
+        );
+
+        return;
+
+    }
+
+
+    if(transaction.length < 4){
+
+        alert(
+            "Please enter your payment reference/UTR."
+        );
+
+        return;
+
+    }
+
+
+    const message =
+
+        "Hello Learn & Earn,%0A%0A" +
+
+        "I have purchased a plan.%0A%0A" +
+
+        "Name: " +
+        encodeURIComponent(name) +
+        "%0A" +
+
+        "WhatsApp: " +
+        encodeURIComponent(phone) +
+        "%0A" +
+
+        "Plan: " +
+        encodeURIComponent(selectedPlan) +
+        "%0A" +
+
+        "Amount: ₹" +
+        selectedPrice +
+        "%0A" +
+
+        "UTR/Reference: " +
+        encodeURIComponent(transaction);
+
+
+    document
+    .getElementById("paymentSuccess")
+    .style.display = "block";
+
+
+    /*
+       IMPORTANT:
+       Replace 919XXXXXXXXX below
+       with your actual WhatsApp number.
+    */
+
+    document
+    .getElementById("whatsappConfirm")
+    .href =
+        "https://wa.me/919XXXXXXXXX?text=" +
+        message;
+
+
+    document
+    .getElementById("paymentSuccess")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+});
+
+</script>
+
 </body>
 </html>
