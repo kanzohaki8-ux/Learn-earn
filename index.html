@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn & Earn - Student Special</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7fe;
+            color: #333;
+            padding-bottom: 60px;
+        }
+
+        /* Banner */
+        .banner {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        .banner h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .banner p {
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        /* Live Counter Box */
+        .live-counter-box {
+            background: #ffffff;
+            border: 2px solid #2575fc;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(37, 117, 252, 0.1);
+        }
+
+        .counter-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2575fc;
+        }
+
+        .live-badge {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-left: 5px;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+
+        /* Trust Badges */
+        .trust-badges {
+            display: flex;
+            justify-content: space-around;
+            background: white;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.85rem;
+            color: #27ae60;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 25px 0 15px;
+            font-size: 1.4rem;
+            color: #2c3e50;
+        }
+
+        /* Course Cards */
+        .courses-grid {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            width: 260px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 2px solid #eef2f5;
+            position: relative;
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -12px;
+            right: 20px;
+            background: #f1c40f;
+            color: #000;
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 10px;
+        }
+
+        .price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2575fc;
+            margin: 10px 0;
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: left;
+        }
+
+        .features li { margin-bottom: 6px; }
+
+        .select-btn {
+            background-color: #2575fc;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* Refer and Earn Section */
+        .refer-box {
+            background: linear-gradient(135deg, #11998e, #38ef7d);
+            color: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .refer-box h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .refer-box p {
+            text-align: center;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .refer-form {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 15px;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+        }
+
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            font-size: 0.95rem;
+        }
+
+        .refer-submit-btn {
+            background: #ffffff;
+            color: #11998e;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        /* Payment Proof Showcase Section */
+        .payout-gallery {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+
+        .payout-card {
+            min-width: 160px;
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px dashed #27ae60;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+
+        .payout-card span {
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.1rem;
+            display: block;
+            margin-top: 4px;
+        }
+
+        /* Comments Section */
+        .review-box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-left: 5px solid #2575fc;
+            min-height: 110px;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .review-name { font-weight: bold; color: #2c3e50; }
+        .stars { color: #f1c40f; }
+        .review-text { font-size: 0.95rem; color: #555; line-height: 1.4; }
+
+        /* Payment Section */
+        .payment-section {
+            display: none;
+            background: white;
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .qr-box img {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #ddd;
+            padding: 5px;
+            border-radius: 8px;
+            margin: 15px 0;
+            object-fit: contain;
+        }
+
+        .upi-id {
+            background: #eef2f5;
+            padding: 10px 18px;
+            font-weight: bold;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 15px;
+            color: #2575fc;
+            font-size: 1.1rem;
+            border: 1px dashed #2575fc;
+        }
+
+        .confirm-btn {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* Support Buttons */
+        .support-section {
+            margin-top: 35px;
+            text-align: center;
+        }
+
+        .support-btns {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .support-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        .telegram-btn { background-color: #0088cc; }
+        .whatsapp-btn { background-color: #25D366; }
+
+    </style>
+</head>
+<body>
+
+    <!-- Header Banner -->
+    <div class="banner">
+        <h1>Hello Students! Aapka Swagat Hai! 🚀</h1>
+        <p>Pocket money ke liye ghar par depend kyu? Ek skill sikho aur khud kamao. 💰📱<br>
+        12th ke saath earning start karo — शुरुआत छोटी होगी, लेकिन experience aur confidence bahut bada milega. 🔥</p>
+    </div>
+
+    <div class="container">
+        
+        <!-- Live Counter -->
+        <div class="live-counter-box">
+            <span>Total Active Members Joined <span class="live-badge">LIVE</span></span>
+            <div class="counter-number" id="memberCounter">10,340</div>
+        </div>
+
+        <!-- Enhanced Trust Badges -->
+        <div class="trust-badges">
+            <div>✅ 100% Verified Skill</div>
+            <div>🔒 Instant UPI Transfer</div>
+            <div>⚡ 24/7 Support</div>
+            <div>🤝 Direct Referral Reward</div>
+        </div>
+
+        <h2 class="section-title">Apna Earning Plan Chuno</h2>
+
+        <!-- Courses -->
+        <div class="courses-grid">
+            <div class="course-card">
+                <h3>Starter Skill</h3>
+                <div class="price">₹49</div>
+                <ul class="features">
+                    <li>✔ Basic Earning Guide</li>
+                    <li>✔ Daily 1 Hour Work</li>
+                    <li>✔ Beginner Friendly</li>
+                </ul>
+                <button class="select-btn" onclick="showPayment('Starter Skill', 49)">Select Plan</button>
+            </div>
+
+            <div class="course-card">
+                <h3>Pro Skill</h3>
+                <div class="price">₹99</div>
+                <ul class="features">
+                    <li>✔ Freelancing Guide</li>
+                    <li>✔ Social Media Earning</li>
+                    <li>✔ High Paying Tools</li>
+                </ul>
+                <button class="select-btn" onclick="showPayment('Pro Skill', 99)">Select Plan</button>
+            </div>
+
+            <div class="course-card">
+                <span class="popular-badge">BEST VALUE</span>
+                <h3>Master Skill</h3>
+                <div class="price">₹199</div>
+                <ul class="features">
+                    <li>✔ Full Step-by-Step Course</li>
+                    <li>✔ Client Finding Strategy</li>
+                    <li>✔ Personal Guidance</li>
+                    <li>✔ 🌟 Eligible for ₹99 Referral Bonus</li>
+                </ul>
+                <button class="select-btn" onclick="showPayment('Master Skill', 199)">Select Plan</button>
+            </div>
+        </div>
+
+        <!-- Refer and Earn Section -->
+        <div class="refer-box">
+            <h2>💸 Refer Karo & ₹99 Kamao Direct UPI Me!</h2>
+            <p>Aapke dost ne jab bhi <b>₹199 ka Master Skill Plan</b> buy kiya, aapko milenge ₹99 direct aapke Bank Account/UPI me!</p>
+
+            <div class="refer-form">
+                <div class="form-group">
+                    <label>Aapka WhatsApp Number:</label>
+                    <input type="text" id="refPhone" placeholder="10 Digit Phone Number">
+                </div>
+                <div class="form-group">
+                    <label>Aapki UPI ID (Jahan ₹99 chahiye):</label>
+                    <input type="text" id="refUpi" placeholder="example@upi ya GooglePay/PhonePe ID">
+                </div>
+                <div class="form-group">
+                    <label>Dost Ka Name & Phone (Jisne ₹199 plan buy kiya):</label>
+                    <input type="text" id="friendDetail" placeholder="Dost Ka Naama Aur Number">
+                </div>
+                <button class="refer-submit-btn" onclick="submitReferral()">Claim ₹99 Reward Now 🚀</button>
+            </div>
+        </div>
+
+        <!-- Recent Payout Live Ticker -->
+        <h2 class="section-title">Recent Student Referral Payouts 💸</h2>
+        <div class="payout-gallery">
+            <div class="payout-card">Amit K. (Delhi) <span>₹99 Sent Via UPI</span></div>
+            <div class="payout-card">Rohan S. (UP) <span>₹99 Sent Via UPI</span></div>
+            <div class="payout-card">Pooja M. (MP) <span>₹99 Sent Via UPI</span></div>
+            <div class="payout-card">Karan P. (Bihar) <span>₹99 Sent Via UPI</span></div>
+        </div>
+
+        <!-- Auto Changing Live Comments -->
+        <h2 class="section-title">Students Feedback 💬</h2>
+        <div class="review-box" id="reviewBox">
+            <div class="review-header">
+                <span class="review-name" id="reviewName">Rahul Sharma</span>
+                <span class="stars">⭐⭐⭐⭐⭐</span>
+            </div>
+            <p class="review-text" id="reviewText">"₹99 wala plan liya tha, 1 week me pehli earning ho gayi. Very easy system!"</p>
+        </div>
+
+        <!-- Payment Section (QR and UPI ID Updated) -->
+        <div class="payment-section" id="paymentSection">
+            <h2 id="selectedPlanTitle">Payment Karein</h2>
+            <p>Course access paane ke liye pehle payment complete karein.</p>
+            
+            <div class="qr-box">
+                <!-- QR Image Placeholder: Apne QR Code Image ka naam 'qr.png' karke folder me rakhein -->
+                <img src="qr.png" alt="PhonePe QR Code" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=deepakboy70@axl'">
+            </div>
+
+            <p>Ya niche diye gaye UPI ID par pay karein:</p>
+            <div class="upi-id">deepakboy70@axl</div>
+
+            <div>
+                <button class="confirm-btn" onclick="alert('Payment screenshot Telegram ya WhatsApp support par bheinze access paane ke liye!')">Payment Kar Diya (Send Screenshot)</button>
+            </div>
+        </div>
+
+        <!-- Support Section -->
+        <div class="support-section">
+            <h2 class="section-title">Koi Sawaal Ya Help Chahiye?</h2>
+            <p>Aap humse direct baat kar sakte hain:</p>
+            <div class="support-btns">
+                <a href="https://t.me/your_telegram_id" target="_blank" class="support-btn telegram-btn">
+                    ✈️ Telegram Support
+                </a>
+                <a href="https://wa.me/910000000000" target="_blank" class="support-btn whatsapp-btn">
+                    💬 WhatsApp Help
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // 1. Live Member Counter
+        let count = 10340;
+        function updateCounter() {
+            count += Math.floor(Math.random() * 3) + 1;
+            document.getElementById('memberCounter').innerText = count.toLocaleString('en-IN');
+        }
+        setInterval(updateCounter, 4000);
+
+        // 2. Dynamic Auto-Changing Comments
+        const reviews = [
+            { name: "Rahul Sharma (Class 12th)", text: "₹99 wala plan liya tha, 1 week me pehli earning ho gayi. Very easy system!" },
+            { name: "Priya Verma (College Student)", text: "Dost ko ₹199 wala course refer kiya tha, mujhe sham ko hi ₹99 UPI par mil gaye!" },
+            { name: "Aman Gupta (12th Student)", text: "Starter plan ₹49 se start kiya tha. Daily 1 hr kaam karke achha confidence mila." },
+            { name: "Neha Singh (Student)", text: "Master Skill Plan ₹199 best hai. Isme full step-by-step guidance mila." },
+            { name: "Vikas Kumar (12th Student)", text: "Support team ne payment ke 5 min baad hi saara material bhej diya." }
+        ];
+
+        let reviewIndex = 0;
+        function rotateReviews() {
+            reviewIndex = (reviewIndex + 1) % reviews.length;
+            document.getElementById('reviewName').innerText = reviews[reviewIndex].name;
+            document.getElementById('reviewText').innerText = `"${reviews[reviewIndex].text}"`;
+        }
+        setInterval(rotateReviews, 5000);
+
+        // 3. Payment Section Toggle
+        function showPayment(planName, price) {
+            document.getElementById('paymentSection').style.display = 'block';
+            document.getElementById('selectedPlanTitle').innerText = 'Payment for ' + planName + ' (₹' + price + ')';
+            window.scrollTo({
+                top: document.getElementById('paymentSection').offsetTop - 20,
+                behavior: 'smooth'
+            });
+        }
+
+        // 4. Refer Claim Handler
+        function submitReferral() {
+            const phone = document.getElementById('refPhone').value;
+            const upi = document.getElementById('refUpi').value;
+            const friend = document.getElementById('friendDetail').value;
+
+            if(!phone || !upi || !friend) {
+                alert('Kripya saari details sahi se bharein!');
+                return;
+            }
+
+            alert('Referral Claim Request Received! Dost ke payment verification ke baad ₹99 aapki UPI ID (' + upi + ') par credit kar diye jayenge.');
+        }
+    </script>
+</body>
+</html>
