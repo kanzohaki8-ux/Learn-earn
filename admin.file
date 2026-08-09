@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Learn & Earn - Admin Panel</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,Segoe UI,sans-serif;
+}
+
+body{
+    background:#f4f7fb;
+    color:#172033;
+}
+
+/* LOGIN */
+
+.login-page{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:linear-gradient(135deg,#eef4ff,#f8faff);
+}
+
+.login-box{
+    width:100%;
+    max-width:420px;
+    background:white;
+    padding:35px;
+    border-radius:18px;
+    box-shadow:0 20px 50px rgba(0,0,0,.12);
+}
+
+.logo{
+    text-align:center;
+    color:#2563eb;
+    font-size:1.8rem;
+    font-weight:800;
+    margin-bottom:5px;
+}
+
+.logo span{
+    color:#111827;
+}
+
+.login-title{
+    text-align:center;
+    margin-bottom:25px;
+    color:#687386;
+}
+
+.form-label{
+    display:block;
+    font-weight:700;
+    margin:14px 0 6px;
+}
+
+.form-input{
+    width:100%;
+    padding:13px;
+    border:1px solid #d9e0eb;
+    border-radius:9px;
+    outline:none;
+    font-size:1rem;
+}
+
+.form-input:focus{
+    border-color:#2563eb;
+}
+
+.captcha-box{
+    margin-top:18px;
+    background:#f1f5ff;
+    padding:15px;
+    border-radius:10px;
+}
+
+.captcha-code{
+    display:inline-block;
+    background:white;
+    border:1px dashed #2563eb;
+    padding:9px 15px;
+    font-size:1.3rem;
+    font-weight:800;
+    letter-spacing:5px;
+    color:#2563eb;
+    user-select:none;
+}
+
+.refresh-captcha{
+    margin-left:8px;
+    border:0;
+    background:#2563eb;
+    color:white;
+    padding:8px 10px;
+    border-radius:7px;
+    cursor:pointer;
+}
+
+.login-btn{
+    width:100%;
+    border:0;
+    background:#2563eb;
+    color:white;
+    padding:13px;
+    border-radius:9px;
+    font-size:1rem;
+    font-weight:700;
+    cursor:pointer;
+    margin-top:20px;
+}
+
+.login-btn:hover{
+    background:#1d4ed8;
+}
+
+.login-error{
+    display:none;
+    margin-top:14px;
+    padding:10px;
+    border-radius:8px;
+    background:#fee2e2;
+    color:#991b1b;
+    font-size:.9rem;
+    text-align:center;
+}
+
+.demo-info{
+    margin-top:20px;
+    padding:12px;
+    background:#fff8e1;
+    border:1px solid #f0d77a;
+    border-radius:8px;
+    font-size:.8rem;
+    color:#735700;
+}
+
+/* ADMIN */
+
+.admin-page{
+    display:none;
+    min-height:100vh;
+}
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+    width:240px;
+    background:#111827;
+    color:white;
+    padding:25px 15px;
+}
+
+.sidebar-logo{
+    font-size:1.35rem;
+    font-weight:800;
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.sidebar-logo span{
+    color:#60a5fa;
+}
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.menu button{
+    border:0;
+    background:transparent;
+    color:#cbd5e1;
+    text-align:left;
+    padding:12px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:.95rem;
+}
+
+.menu button:hover,
+.menu button.active{
+    background:#2563eb;
+    color:white;
+}
+
+.logout{
+    position:absolute;
+    bottom:25px;
+    left:15px;
+    right:15px;
+    background:#dc2626!important;
+    color:white!important;
+    text-align:center!important;
+}
+
+.main{
+    margin-left:240px;
+    padding:25px;
+}
+
+.topbar{
+    background:white;
+    padding:18px 22px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:25px;
+    box-shadow:0 3px 12px rgba(0,0,0,.04);
+}
+
+.admin-name{
+    font-weight:700;
+}
+
+.status{
+    background:#dcfce7;
+    color:#166534;
+    padding:6px 11px;
+    border-radius:20px;
+    font-size:.8rem;
+    font-weight:700;
+}
+
+/* CARDS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.stat-card{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    border:1px solid #e8edf4;
+}
+
+.stat-card p{
+    color:#6b7280;
+    font-size:.85rem;
+    margin-bottom:5px;
+}
+
+.stat-card h2{
+    font-size:1.7rem;
+}
+
+.blue{
+    color:#2563eb;
+}
+
+.green{
+    color:#16a34a;
+}
+
+.orange{
+    color:#ea580c;
+}
+
+.red{
+    color:#dc2626;
+}
+
+/* CONTENT */
+
+.content-section{
+    display:none;
+}
+
+.content-section.active{
+    display:block;
+}
+
+.panel{
+    background:white;
+    border-radius:13px;
+    padding:22px;
+    box-shadow:0 3px 12px rgba(0,0,0,.04);
+    margin-bottom:20px;
+}
+
+.panel h2{
+    margin-bottom:17px;
+}
+
+/* TABLE */
+
+.table-wrap{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:850px;
+}
+
+th,
+td{
+    padding:12px;
+    border-bottom:1px solid #edf0f4;
+    text-align:left;
+    font-size:.88rem;
+}
+
+th{
+    background:#f8fafc;
+    color:#4b5563;
+}
+
+.badge-status{
+    padding:5px 9px;
+    border-radius:15px;
+    font-size:.75rem;
+    font-weight:700;
+}
+
+.pending{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.verified{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.rejected{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.action-btn{
+    border:0;
+    padding:7px 9px;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:700;
+    margin:2px;
+}
+
+.verify{
+    background:#16a34a;
+    color:white;
+}
+
+.reject{
+    background:#dc2626;
+    color:white;
+}
+
+/* PLAN */
+
+.plan-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.plan-card{
+    border:1px solid #e5eaf2;
+    border-radius:12px;
+    padding:20px;
+    background:white;
+}
+
+.plan-price{
+    font-size:1.6rem;
+    color:#2563eb;
+    font-weight:800;
+    margin:8px 0;
+}
+
+/* NOTICE */
+
+.notice{
+    background:#eff6ff;
+    border:1px solid #bfdbfe;
+    color:#1e40af;
+    padding:14px;
+    border-radius:9px;
+    margin-bottom:20px;
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+
+    .sidebar{
+        width:190px;
+    }
+
+    .main{
+        margin-left:190px;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .plan-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+        padding:15px;
+    }
+
+    .menu{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .logout{
+        position:relative;
+        left:auto;
+        right:auto;
+        bottom:auto;
+        margin-top:10px;
+    }
+
+    .main{
+        margin-left:0;
+        padding:15px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .topbar{
+        gap:10px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- ================= LOGIN ================= -->
+
+<div id="loginPage" class="login-page">
+
+<div class="login-box">
+
+<div class="logo">
+Learn<span>&</span>Earn
+</div>
+
+<p class="login-title">
+Admin Panel Login
+</p>
+
+
+<label class="form-label">
+Mobile Number / Gmail
+</label>
+
+<input
+type="text"
+id="loginId"
+class="form-input"
+placeholder="admin@gmail.com / 9876543210"
+>
+
+
+<label class="form-label">
+Password
+</label>
+
+<input
+type="password"
+id="loginPassword"
+class="form-input"
+placeholder="Enter password"
+>
+
+
+<div class="captcha-box">
+
+<label class="form-label" style="margin-top:0;">
+Security CAPTCHA
+</label>
+
+<div>
+
+<span
+id="captchaCode"
+class="captcha-code">
+</span>
+
+<button
+type="button"
+class="refresh-captcha"
+onclick="generateCaptcha()">
+↻
+</button>
+
+</div>
+
+
+<input
+type="text"
+id="captchaInput"
+class="form-input"
+placeholder="CAPTCHA enter karein"
+style="margin-top:10px;"
+>
+
+</div>
+
+
+<button
+class="login-btn"
+onclick="adminLogin()">
+
+🔐 Login
+
+</button>
+
+
+<div
+id="loginError"
+class="login-error">
+</div>
+
+
+<div class="demo-info">
+
+<strong>Demo Login</strong><br>
+
+Gmail:
+admin@learnandearn.in<br>
+
+Password:
+Admin@123
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ================= ADMIN PANEL ================= -->
+
+<div id="adminPage" class="admin-page">
+
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+<div class="sidebar-logo">
+Learn<span>&</span>Earn
+</div>
+
+
+<div class="menu">
+
+<button
+class="active"
+onclick="showSection('dashboard',this)">
+📊 Dashboard
+</button>
+
+<button
+onclick="showSection('orders',this)">
+🛒 Orders
+</button>
+
+<button
+onclick="showSection('payments',this)">
+💳 Payments
+</button>
+
+<button
+onclick="showSection('plans',this)">
+📦 Plans
+</button>
+
+<button
+onclick="showSection('students',this)">
+👥 Students
+</button>
+
+</div>
+
+
+<button
+class="menu button logout"
+onclick="logout()">
+🚪 Logout
+</button>
+
+</aside>
+
+
+<!-- MAIN -->
+
+<main class="main">
+
+
+<div class="topbar">
+
+<div>
+
+<strong>
+Admin Dashboard
+</strong>
+
+</div>
+
+<div class="admin-name">
+
+<span class="status">
+● Online
+</span>
+
+</div>
+
+</div>
+
+
+<!-- ================= DASHBOARD ================= -->
+
+<section
+id="dashboard"
+class="content-section active">
+
+
+<div class="notice">
+
+⚠️ Ye demo admin panel hai. Payment ko verify karne se pehle
+bank/UPI transaction manually check karein.
+
+</div>
+
+
+<div class="stats">
+
+
+<div class="stat-card">
+
+<p>
+Total Orders
+</p>
+
+<h2
+id="totalOrders"
+class="blue">
+0
+</h2>
+
+</div>
+
+
+<div class="stat-card">
+
+<p>
+Total Revenue
+</p>
+
+<h2
+id="totalRevenue"
+class="green">
+₹0
+</h2>
+
+</div>
+
+
+<div class="stat-card">
+
+<p>
+Pending Payments
+</p>
+
+<h2
+id="pendingOrders"
+class="orange">
+0
+</h2>
+
+</div>
+
+
+<div class="stat-card">
+
+<p>
+Verified Payments
+</p>
+
+<h2
+id="verifiedOrders"
+class="blue">
+0
+</h2>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h2>
+📈 Recent Orders
+</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+Student
+</th>
+
+<th>
+Plan
+</th>
+
+<th>
+Amount
+</th>
+
+<th>
+UTR
+</th>
+
+<th>
+Status
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="dashboardOrders">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= ORDERS ================= -->
+
+<section
+id="orders"
+class="content-section">
+
+<div class="panel">
+
+<h2>
+🛒 All Orders
+</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Student</th>
+<th>WhatsApp</th>
+<th>Plan</th>
+<th>Amount</th>
+<th>UTR</th>
+<th>Status</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="ordersTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= PAYMENTS ================= -->
+
+<section
+id="payments"
+class="content-section">
+
+<div class="panel">
+
+<h2>
+💳 Payment Verification
+</h2>
+
+<div class="notice">
+
+Student ke UTR/reference number ko apne UPI/bank statement
+se verify karne ke baad hi "Verify" button use karein.
+
+</div>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Student</th>
+<th>Plan</th>
+<th>Amount</th>
+<th>UTR</th>
+<th>Status</th>
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+<tbody id="paymentTable">
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= PLANS ================= -->
+
+<section
+id="plans"
+class="content-section">
+
+<div class="panel">
+
+<h2>
+📦 Current Plans
+</h2>
+
+
+<div class="plan-grid">
+
+
+<div class="plan-card">
+
+<h3>
+Starter Skill
+</h3>
+
+<div class="plan-price">
+₹49
+</div>
+
+<p>
+Beginner digital skill guide.
+</p>
+
+</div>
+
+
+<div class="plan-card">
+
+<h3>
+Pro Skill
+</h3>
+
+<div class="plan-price">
+₹99
+</div>
+
+<p>
+Freelancing and social media basics.
+</p>
+
+</div>
+
+
+<div class="plan-card">
+
+<h3>
+Master Skill
+</h3>
+
+<div class="plan-price">
+₹199
+</div>
+
+<p>
+Complete practical learning path.
+</p>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ================= STUDENTS ================= -->
+
+<section
+id="students"
+class="content-section">
+
+<div class="panel">
+
+<h2>
+👥 Students
+</h2>
+
+<div class="table-wrap">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Name</th>
+<th>WhatsApp</th>
+<th>Plan</th>
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody id="studentsTable">
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+</main>
+
+</div>
+
+
+<script>
+
+/* ================= CAPTCHA ================= */
+
+let captchaAnswer = "";
+
+
+function generateCaptcha(){
+
+    const chars =
+    "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+
+    let code = "";
+
+    for(let i=0;i<6;i++){
+
+        code +=
+        chars.charAt(
+            Math.floor(
+                Math.random()*chars.length
+            )
+        );
+
+    }
+
+    captchaAnswer = code;
+
+    document
+    .getElementById("captchaCode")
+    .innerText = code;
+
+}
+
+
+generateCaptcha();
+
+
+/* ================= LOGIN ================= */
+
+function adminLogin(){
+
+    const loginId =
+    document
+    .getElementById("loginId")
+    .value
+    .trim();
+
+    const password =
+    document
+    .getElementById("loginPassword")
+    .value;
+
+    const captcha =
+    document
+    .getElementById("captchaInput")
+    .value
+    .trim()
+    .toUpperCase();
+
+    const error =
+    document
+    .getElementById("loginError");
+
+
+    /*
+       DEMO CREDENTIALS
+
+       Gmail:
+       admin@learnandearn.in
+
+       Password:
+       Admin@123
+    */
+
+
+    if(
+        loginId !== "admin@learnandearn.in" &&
+        loginId !== "9876543210"
+    ){
+
+        showLoginError(
+            "Invalid mobile number / Gmail."
+        );
+
+        return;
+
+    }
+
+
+    if(password !== "Admin@123"){
+
+        showLoginError(
+            "Incorrect password."
+        );
+
+        return;
+
+    }
+
+
+    if(captcha !== captchaAnswer){
+
+        showLoginError(
+            "Incorrect CAPTCHA."
+        );
+
+        generateCaptcha();
+
+        return;
+
+    }
+
+
+    error.style.display = "none";
+
+    document
+    .getElementById("loginPage")
+    .style.display = "none";
+
+    document
+    .getElementById("adminPage")
+    .style.display = "block";
+
+    loadOrders();
+
+}
+
+
+function showLoginError(message){
+
+    const error =
+    document
+    .getElementById("loginError");
+
+    error.innerText = message;
+
+    error.style.display = "block";
+
+}
+
+
+/* ================= LOGOUT ================= */
+
+function logout(){
+
+    document
+    .getElementById("adminPage")
+    .style.display = "none";
+
+    document
+    .getElementById("loginPage")
+    .style.display = "flex";
+
+    document
+    .getElementById("loginPassword")
+    .value = "";
+
+    document
+    .getElementById("captchaInput")
+    .value = "";
+
+    generateCaptcha();
+
+}
+
+
+/* ================= NAVIGATION ================= */
+
+function showSection(id,button){
+
+    document
+    .querySelectorAll(".content-section")
+    .forEach(function(section){
+
+        section.classList.remove("active");
+
+    });
+
+
+    document
+    .getElementById(id)
+    .classList.add("active");
+
+
+    document
+    .querySelectorAll(".menu button")
+    .forEach(function(btn){
+
+        btn.classList.remove("active");
+
+    });
+
+
+    button.classList.add("active");
+
+}
+
+
+/* ================= DEMO ORDERS ================= */
+
+/*
+   Ye sample orders hain.
+
+   Real website me orders database se aayenge.
+*/
+
+let orders = [
+
+{
+    name:"Rahul Sharma",
+    phone:"9876543210",
+    plan:"Master Skill",
+    amount:199,
+    utr:"DEMO19901",
+    status:"Pending"
+},
+
+{
+    name:"Priya Verma",
+    phone:"9123456780",
+    plan:"Pro Skill",
+    amount:99,
+    utr:"DEMO99002",
+    status:"Verified"
+},
+
+{
+    name:"Aman Gupta",
+    phone:"9988776655",
+    plan:"Starter Skill",
+    amount:49,
+    utr:"DEMO49003",
+    status:"Pending"
+}
+
+];
+
+
+/* ================= LOAD ORDERS ================= */
+
+function loadOrders(){
+
+    const orderTable =
+    document.getElementById("ordersTable");
+
+    const paymentTable =
+    document.getElementById("paymentTable");
+
+    const dashboardTable =
+    document.getElementById("dashboardOrders");
+
+    const studentsTable =
+    document.getElementById("studentsTable");
+
+
+    orderTable.innerHTML = "";
+    paymentTable.innerHTML = "";
+    dashboardTable.innerHTML = "";
+    studentsTable.innerHTML = "";
+
+
+    let revenue = 0;
+    let pending = 0;
+    let verified = 0;
+
+
+    orders.forEach(function(order,index){
+
+        if(order.status === "Verified"){
+
+            revenue += order.amount;
+            verified++;
+
+        }
+
+        if(order.status === "Pending"){
+            pending++;
+        }
+
+
+        /* ORDERS */
+
+        const row =
+        document.createElement("tr");
+
+        row.innerHTML = `
+
+        <td>${order.name}</td>
+
+        <td>${order.phone}</td>
+
+        <td>${order.plan}</td>
+
+        <td>₹${order.amount}</td>
+
+        <td>${order.utr}</td>
+
+        <td>
+            <span class="badge-status ${getStatusClass(order.status)}">
+                ${order.status}
+            </span>
+        </td>
+
+        <td>
+
+            <button
+            class="action-btn verify"
+            onclick="verifyOrder(${index})">
+            Verify
+            </button>
+
+            <button
+            class="action-btn reject"
+            onclick="rejectOrder(${index})">
+            Reject
+            </button>
+
+        </td>
+
+        `;
+
+        orderTable.appendChild(row);
+
+
+        /* PAYMENT TABLE */
+
+        const paymentRow =
+        document.createElement("tr");
+
+        paymentRow.innerHTML = `
+
+        <td>${order.name}</td>
+
+        <td>${order.plan}</td>
+
+        <td>₹${order.amount}</td>
+
+        <td>${order.utr}</td>
+
+        <td>
+            <span class="badge-status ${getStatusClass(order.status)}">
+                ${order.status}
+            </span>
+        </td>
+
+        <td>
+
+            <button
+            class="action-btn verify"
+            onclick="verifyOrder(${index})">
+            ✓ Verify
+            </button>
+
+            <button
+            class="action-btn reject"
+            onclick="rejectOrder(${index})">
+            ✕ Reject
+            </button>
+
+        </td>
+
+        `;
+
+        paymentTable.appendChild(paymentRow);
+
+
+        /* DASHBOARD */
+
+        const dashRow =
+        document.createElement("tr");
+
+        dashRow.innerHTML = `
+
+        <td>${order.name}</td>
+
+        <td>${order.plan}</td>
+
+        <td>₹${order.amount}</td>
+
+        <td>${order.utr}</td>
+
+        <td>
+            <span class="badge-status ${getStatusClass(order.status)}">
+                ${order.status}
+            </span>
+        </td>
+
+        `;
+
+        dashboardTable.appendChild(dashRow);
+
+
+        /* STUDENTS */
+
+        const studentRow =
+        document.createElement("tr");
+
+        studentRow.innerHTML = `
+
+        <td>${order.name}</td>
+
+        <td>${order.phone}</td>
+
+        <td>${order.plan}</td>
+
+        <td>
+            <span class="badge-status ${getStatusClass(order.status)}">
+                ${order.status}
+            </span>
+        </td>
+
+        `;
+
+        studentsTable.appendChild(studentRow);
+
+    });
+
+
+    document
+    .getElementById("totalOrders")
+    .innerText = orders.length;
+
+
+    document
+    .getElementById("totalRevenue")
+    .innerText = "₹" + revenue;
+
+
+    document
+    .getElementById("pendingOrders")
+    .innerText = pending;
+
+
+    document
+    .getElementById("verifiedOrders")
+    .innerText = verified;
+
+}
+
+
+function getStatusClass(status){
+
+    if(status === "Verified"){
+        return "verified";
+    }
+
+    if(status === "Rejected"){
+        return "rejected";
+    }
+
+    return "pending";
+
+}
+
+
+/* ================= VERIFY ================= */
+
+function verifyOrder(index){
+
+    if(
+        !confirm(
+            "Kya aapne payment bank/UPI me verify kar liya hai?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    orders[index].status = "Verified";
+
+    loadOrders();
+
+    alert(
+        "Order verified successfully."
+    );
+
+}
+
+
+/* ================= REJECT ================= */
+
+function rejectOrder(index){
+
+    if(
+        !confirm(
+            "Kya aap is payment ko reject karna chahte hain?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    orders[index].status = "Rejected";
+
+    loadOrders();
+
+    alert(
+        "Order rejected."
+    );
+
+}
+
+</script>
+
+</body>
+</html>
